@@ -1,0 +1,17 @@
+baseURL = "https://lisette-subset.github.io/technical-journal/"
+title = "Lisette's Technical Journal"
+theme = "hugo-book"
+languageCode = "en-us"
+enableGitInfo = true
+
+# (Optional but handy)
+[params]
+  BookTheme = "auto"       # light/dark auto
+  BookToC = true           # show table of contents
+  BookSearch = true        # built-in search
+  BookRepo = "https://github.com/lisette-subset/technical-journal"
+
+# Recommended for clean code blocks
+[markup]
+  [markup.highlight]
+    noClasses = false
