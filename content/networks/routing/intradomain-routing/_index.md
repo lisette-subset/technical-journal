@@ -1,6 +1,6 @@
 +++
 date = '2025-09-07T13:27:35-04:00'
-draft = true
+draft = false
 title = 'Intradomain Routing'
 +++
 
