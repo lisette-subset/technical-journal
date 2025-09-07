@@ -1,6 +1,6 @@
 +++
 date = '2025-09-07T13:28:05-04:00'
-draft = true
+draft = false
 title = 'Open Shortest Path First Algorithm'
 +++
 
