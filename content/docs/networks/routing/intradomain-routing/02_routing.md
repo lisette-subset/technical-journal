@@ -6,6 +6,8 @@ title = '02_routing'
 
 # Routing Algorithms:
 
+The point of a routing algorithm us to compute good paths/routes from sending host to recieving host through network of routers
+
 What do we mean by forwarding
 - forwarding refers to transferring a packet from an incoming link to to an outgoing link through a **single** router
 
@@ -16,8 +18,8 @@ Routing:
 
 
 Two main classes of algorithms:
-- link-state
-- distance-vector
+- link-state (global, all routers will have complete topology and link cost info)
+- distance-vector (decentralized, nodes only have information about their neighbors)
 
 On the graph (for representating the algorithm):
 - nodes are routers, edges have associated weights, which can represent:
@@ -30,13 +32,25 @@ On the graph (for representating the algorithm):
 
 ### Dijikstra's Algorithm
 
+Note that in link state algorithms, the nodes know the netowrk topologies up front, Dijikstra's is used to compute shortest paths. 
+
 $u$ - root node 
+
 $v$ - any other non root node 
+
 $D(v)$ - cost of the current **least cost path** from u to v
+
 p(v) - previous node along the current least cost path from u -> v (temp variable)
+
 c(u,v) - the cost form u to directly attached neighbor v
-N' - subset of nodes along the current least cost path from u to v
+
+N - set of routers/nodes (including the current node)
+
+N' - subset of nodes along the current least cost path from u to v (their least cost path is definitively known)
+
 w - loop temp variable, least cost path from previous iteration of the loop
+
+The graph G is G = (N,E), where E is the set of links/edges between each node/router. 
 
 init step:
 - initialize all currently known least cost paths from u to its direct neigbors
@@ -73,8 +87,7 @@ What's the computation complexity of the link state routing algo?
     - nodes do their calculations and then send them back acorss, they dont happen in a centralized manner
     - it is asynchronous (nodes dont need to be synchronized with each other)
     - algorithm iterates until each node does not have new update to send to its neighbros
-- important: each router eventually learns the full network topology
-    - this is different from Dijikstra's/link-state where they don't know the network topo by the end. 
+
 
 Based on Bellman Ford algorithm
 
@@ -113,6 +126,10 @@ And the algorithm in psuedocode is:
 
 #### Poison Reverse: a solution to count to infinity in DV Routing
 
+In order to stop the problem of counting to infinity above, a node can poison a path. 
+
+
+
 ## Comparison of Link State vs Distance Vector Algorithms:
 - message complexity:
     - LS: O(n^2)
@@ -121,9 +138,28 @@ And the algorithm in psuedocode is:
     - LS: O(n^2) algorithm, but may have oscillations
     - DV: convergene time varies (count to infinity problems, may have routing loops)
 
+Robustness:
+- DV-enabled router can do "black holing" (see:ATT fiasco) by incorrectly advertising a cheap path. 
 
+## RIP - Routing Information Protocol 
 
+- based on DV 
+- uses hop distance as the metric
+- distance tables get merged at each step 
+- still can suffer from count to infinity problems
+- if no traffic from another node in more than 180secs, marked as dead
 
+## Open Shortest Path First (OSPF) 
+- implementation of link state routing with Dijikstra
+- has support for hierarchy
+    - packets need to go through backbone first 
+- a topo map of the whole area is constructed
+- each link considers itself the root node and runs dijikstras
+- network edge weights set by systems administrator based on incentives
+- whenever there's a change, a node broadcast changes to all other routers in AS, not just neightbors
+- link state advertisements
+- 30 mins refresh rate
+- still intradomain, within an autonomous system
 
 # Sources:
 
