@@ -27,3 +27,9 @@ On the graph (for representating the algorithm):
         - this can cause **pathological behavior** with **link-state **algorithms
 
 ## Zoom in Link State Routing Algorithms
+
+### Dijikstra's Algorithm
+
+$u$ - root node 
+$v$ - any other non root node 
+$D(v)$ - cost of the current **least cost path** from u to v
