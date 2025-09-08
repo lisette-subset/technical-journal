@@ -56,3 +56,42 @@ Iterations:
 - at this step we're basically testing whether adding an edge will make the distance shorter. 
 
 ![alt text](image.png)
+
+Finally the algo exits by returning the shortest paths and their costs from the source node u to every other node v in the network. 
+
+#### Computational Complexity
+
+What's the computation complexity of the link state routing algo?
+- first iter: search through all nodes to find the node with min path cost. 
+- search through remaining (n-1) nodes in the rest of them. 
+- after we go through all iterations, we have searched through n(n+1)/2 nodes. 
+- so it's O(n^2)
+
+## Distance Vector Routing
+
+- iterative and distributed
+    - nodes do their calculations and then send them back acorss, they dont happen in a centralized manner
+    - it is asynchronous (nodes dont need to be synchronized with each other)
+    - algorithm iterates until each node does not have new update to send to its neighbros
+- important: each router eventually learns the full network topology
+    - this is different from Dijikstra's/link-state where they don't know the network topo by the end. 
+
+Based on Bellman Ford algorithm
+
+- each node maintains its own distance vector, with costs to each other node in the network
+- intermittently each node sends its own distance vector to its neighbor nodes
+- neighbors receive distance vector and use it to update their own distance vectors
+
+Vector update step:
+- Use the Bellman Ford Equation to update the shortest distance estimate from each node x to y with:
+
+![alt text](image-2.png)
+
+"if I go to each of my neighbors first, and then from them to node u, which path gives me the lowest total cost?"
+
+Notice that in the case that we're getting the distance to a nieghbor, the second term in the eqauion (D_v(y)) is 0, so we can determine distance to our neighbors in the base case :)
+
+Example Graph:
+
+![alt text](image-1.png)
+
