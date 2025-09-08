@@ -95,3 +95,38 @@ Example Graph:
 
 ![alt text](image-1.png)
 
+And the algorithm in psuedocode is:
+![alt text](image-3.png)
+
+
+### Failures in Distance Vector Routing
+
+- The issue is that this algorithm converges, we start convergence when there are no local changes since there are no more distance vectors being exchanged
+- what happens if there are link cost changes?
+- in that case, we recompute the distance vector and send the message out to our neighbors again
+- the time needed for the recomputation depends on the size of the network. 
+- "good news travels fast" (nieghbors don't turn down a cheaper cost)
+    - when a link cost goes down, all nodes update their distance vectors quickly
+- however if the new cost is higher, pathological behavior occurs (count to infinity problem)
+- this is "bad news travels slow" (propogate slowly, DV has no mechamism to say "don't use me as reference, my path just got worse")
+- lessons: pathologies are subtle in distributed algorithms
+
+#### Poison Reverse: a solution to count to infinity in DV Routing
+
+## Comparison of Link State vs Distance Vector Algorithms:
+- message complexity:
+    - LS: O(n^2)
+    - DV: exchange between neighbors, convergence time varies (bad case vs good case)
+- speed of convergence:
+    - LS: O(n^2) algorithm, but may have oscillations
+    - DV: convergene time varies (count to infinity problems, may have routing loops)
+
+
+
+
+
+# Sources:
+
+- Georgia Tech's Computer Networking course (MS in CS variant)
+- https://www.youtube.com/watch?v=jJU2AVX6gpU&t=904s
+- 
