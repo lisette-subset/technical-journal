@@ -4,5 +4,9 @@ draft = false
 title = 'Home Page'
 +++
 
-Welcome to Tech Journal
+Welcome to Lisette's Tech Journal
+
+- slowly migrating old artciles to this one
+- now using Hugo(Go) instead of Jekyll (Ruby) as a static site generator
+    - much faster build and deployment times :)
 
