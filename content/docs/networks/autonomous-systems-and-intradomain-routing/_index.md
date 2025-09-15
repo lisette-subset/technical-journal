@@ -395,7 +395,8 @@ step 1: AS X advertises prefix p1 to the RS, which is added to the RIB specific 
 2: RS uses peer specific import filter to check if X is allowed to advertuse p1
 if allowed, add p1 to master rIB
 - RS applies peer specific export filter to check if X allows Z to get p1, if true, adds that route as Z specific RIB
-lastly, RS advertises p1 to Z with x as next hop. 
+- lastly, if all export filters are passed, then the Route Server advertises $p1$ to AS Z with AS X as the next hop. 
+- basically, the RS exports export routes. 
 ---
 
 
