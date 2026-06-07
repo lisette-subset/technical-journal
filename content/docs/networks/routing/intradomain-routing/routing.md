@@ -33,7 +33,7 @@ On the graph (for representating the algorithm):
 ### Dijikstra's Algorithm
 
 Note that in link state algorithms, the nodes know the netowrk topologies up front, Dijikstra's is used to compute shortest paths. 
-{{< katex />}}
+{{< katex >}}{{< /katex >}}
 
 $$u$$ - root node 
 
