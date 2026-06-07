@@ -2,5 +2,5 @@
 title: Blog
 menu:
   after:
-    weight: 5
+    weight: 1
 ---
